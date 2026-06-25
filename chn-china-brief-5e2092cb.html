@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>leyu · 再次遇见，持续关注</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      color: #1e1e2a;
+      background-color: #f7f7fa;
+      line-height: 1.6;
+    }
+
+    /* 深色头图（顶部导航区 + hero） */
+    .dark-header {
+      background: linear-gradient(145deg, #0f0f1a 0%, #1c1c2e 100%);
+      color: #eaeaef;
+      padding: 1.2rem 2rem 4rem;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo-area {
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      color: #f0eae0;
+    }
+    .logo-area span { color: #b3a6d9; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.95rem;
+    }
+    .nav-links a {
+      color: #cbcbde;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      padding-bottom: 2px;
+    }
+    .nav-links a:hover {
+      color: #ffffff;
+      border-bottom-color: #9b8ec4;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding: 0 0.5rem;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      max-width: 800px;
+    }
+    .hero h1 i {
+      font-style: normal;
+      background: linear-gradient(135deg, #c2b3f0, #a492d6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #bebed2;
+      max-width: 660px;
+      border-left: 3px solid #6f5e9e;
+      padding-left: 1.2rem;
+    }
+
+    /* 浅色正文区 */
+    .main-content {
+      max-width: 1200px;
+      margin: -1.5rem auto 2rem;
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    .intro-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2.8rem;
+    }
+    .intro-card h2 {
+      font-size: 1.9rem;
+      font-weight: 470;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+      color: #191926;
+    }
+    .intro-card p {
+      color: #2f2f3d;
+      margin-bottom: 1.2rem;
+    }
+    .intro-card a {
+      color: #6d5aa7;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #b3a3d9;
+      font-weight: 500;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    .intro-card a:hover {
+      color: #3f2e77;
+      text-decoration-color: #3f2e77;
+    }
+
+    .feature-quote {
+      background: #f2f0f8;
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      margin: 1.8rem 0 0.5rem;
+      border-left: 5px solid #7c69b2;
+    }
+    .feature-quote p {
+      margin-bottom: 0.3rem;
+    }
+
+    /* 三个场景模块 (卡片网格) */
+    .scenes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin: 2.5rem 0 3rem;
+    }
+    .scene-item {
+      background: #ffffff;
+      border-radius: 26px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      border: 1px solid #f0eef6;
+    }
+    .scene-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.04);
+    }
+    .scene-item h3 {
+      font-size: 1.35rem;
+      font-weight: 480;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .scene-item h3::before {
+      content: "·";
+      color: #7f6bb4;
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-right: 4px;
+    }
+    .scene-item p {
+      color: #3a3a4a;
+      font-size: 0.95rem;
+    }
+
+    /* 常见说明 (FAQ 摘要) */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 2.8rem 2.5rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2.5rem;
+    }
+    .faq-summary h2 {
+      font-size: 1.7rem;
+      font-weight: 470;
+      margin-bottom: 1.5rem;
+    }
+    .faq-item {
+      border-bottom: 1px solid #e7e5ef;
+      padding: 1rem 0;
+    }
+    .faq-item:last-of-type {
+      border-bottom: 0;
+    }
+    .faq-question {
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #1c1c2b;
+      margin-bottom: 0.3rem;
+    }
+    .faq-answer {
+      color: #4c4c5c;
+      font-size: 0.95rem;
+      padding-right: 1rem;
+    }
+    .faq-answer a {
+      color: #6d5aa7;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .faq-answer a:hover {
+      color: #3f2e77;
+    }
+
+    /* 底部 */
+    .footer-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #7a7a8e;
+      padding: 1.8rem 2rem 2.2rem;
+      border-top: 1px solid #e0dcec;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* 响应式 */
+    @media (max-width: 960px) {
+      .scenes-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 680px) {
+      .dark-header { padding: 1rem 1rem 3rem; }
+      .nav-row { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .nav-links { flex-wrap: wrap; gap: 1.2rem; }
+      .hero h1 { font-size: 2rem; }
+      .intro-card { padding: 2rem 1.5rem; }
+      .scenes-grid { grid-template-columns: 1fr; }
+      .faq-summary { padding: 1.8rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图：包含顶部导航和hero -->
+  <header class="dark-header">
+    <div class="nav-row">
+      <div class="logo-area">leyu <span>·</span> 再次相遇</div>
+      <div class="nav-links">
+        <a href="#">收藏</a>
+        <a href="#">常见</a>
+        <a href="#">场景</a>
+      </div>
+    </div>
+    <div class="hero">
+      <h1>从一次访问到持续 <i>关注</i>，让信息自然沉淀</h1>
+      <p>当你再次打开浏览器，或许会想起之前匆匆浏览的页面。收藏夹里的链接需要被重新看见，而新的发现也值得妥善安放。</p>
+    </div>
+  </header>
+
+  <!-- 浅色正文区 -->
+  <div class="main-content">
+
+    <!-- 核心介绍（再次访问、收藏角度） -->
+    <section class="intro-card">
+      <h2>再次访问 · 收藏的连接点</h2>
+      <p>网络浏览中，我们常会路过一些有潜力的站点，却很少在第一次就深度停留。<strong>leyu</strong> 正是这样一个值得你收藏并反复回访的信息节点：它既不急于用弹窗挽留，也不依靠夸大的承诺制造紧迫感。当你将其加入书签，每一次点击都会回到这片干净、有层次的内容区域。</p>
+      <p>在 <a href="https://chn-china-leyu.com">leyu</a>，你会看到经过梳理的知识碎片、轻量的场景化指引，以及不断更新的常见说明。它更像一个安静的文档库，而非喧闹的营销页面。收藏它，意味着你为自己保留了一个可以持续查阅的入口。</p>
+      <div class="feature-quote">
+        <p>💡 提示：如果你之前曾访问过这里，不妨重新打开收藏夹。很多细节会在第二次阅读时浮现——这恰恰是持续关注带来的价值。</p>
+      </div>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes-grid">
+      <div class="scene-item">
+        <h3>新读者场景</h3>
+        <p>首次接触，快速浏览核心介绍和常见说明。无需注册，即可了解 <strong>leyu</strong> 的内容结构与知识侧重。收藏页面后，下次可从书签直接进入。</p>
+      </div>
+      <div class="scene-item">
+        <h3>回访者场景</h3>
+        <p>当你需要查阅之前看过的某一处解释或场景案例，直接打开收藏的链接。页面结构稳定，更新会通过段落变化自然体现，不依赖强推送。</p>
+      </div>
+      <div class="scene-item">
+        <h3>研究者场景</h3>
+        <p>将 <strong>leyu</strong> 作为长期信息锚点，定期回来阅读新增的说明或调整后的模块。适合喜欢跟踪知识演变、做横向对比的读者。</p>
+      </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <section class="faq-summary">
+      <h2>常见说明 · 简短摘要</h2>
+      <div class="faq-item">
+        <div class="faq-question">这个页面会频繁改变吗？</div>
+        <div class="faq-answer">内容会随方向更新而调整，但整体结构保持稳定。你随时可以通过 <a href="https://chn-china-leyu.com">leyu</a> 访问最新版本，历史印象与当前内容可能略有不同，这属于正常迭代。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">如何更好地收藏和利用？</div>
+        <div class="faq-answer">建议将链接添加至浏览器书签栏，或使用笔记工具保存 URL。无需注册或订阅，直接访问即可获取完整信息。收藏后，每隔一段时间重新打开，你会注意到内容的自然变化。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">页面提到的“场景模块”是固定的吗？</div>
+        <div class="faq-answer">三个场景作为示例长期保留，但模块内的表述和细节会随页面方向微调。这种设计是为了让回访者每次都能发现新的表达角度，避免完全复制上一次的阅读体验。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">为什么强调“收藏”和“持续关注”？</div>
+        <div class="faq-answer">因为很多有价值的信息只被浏览一次就被遗忘。通过收藏 <a href="https://chn-china-leyu.com">leyu</a>，你为自己设立了一个轻量回访点，让知识可以重复接触、加深理解。不依赖推送，完全由你掌控节奏。</div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 底部 -->
+  <footer class="footer-note">
+    <p>内容持续整理 · 收藏以便回访 &nbsp;·&nbsp; 本页仅作为信息介绍</p>
+  </footer>
+
+</body>
+</html>
